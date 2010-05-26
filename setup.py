@@ -43,7 +43,8 @@ CLASSIFIERS = [
     'Topic :: Scientific/Engineering',
     'Topic :: Text Processing :: Markup :: LaTeX']
 SCRIPTS = ['pgf2img']
-DATA_FILES = [('man/man1',[man_file])]
+MODULES = ['pgf2img']
+DATA_FILES = [('man/man1', [man_file])]
 CMDCLASS = {'build': build,
             'clean': clean}
 
@@ -58,5 +59,6 @@ setup(name = NAME,
       license = LICENSE,
       classifiers = CLASSIFIERS,
       scripts = SCRIPTS,
+      py_modules = MODULES,
       data_files = DATA_FILES,
       cmdclass = CMDCLASS)
