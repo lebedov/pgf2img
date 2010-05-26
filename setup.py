@@ -31,7 +31,7 @@ AUTHOR_EMAIL = 'lev@columbia.edu'
 URL = 'http://www.columbia.edu/~lev'
 MAINTAINER = AUTHOR
 MAINTAINER_EMAIL = AUTHOR_EMAIL
-DESCRIPTION = 'PGF/TiKZ to image conversion script'
+DESCRIPTION = 'PGF/TikZ to image conversion script'
 LICENSE = 'BSD'
 CLASSIFIERS = [
     'Development Status :: 4 - Beta',

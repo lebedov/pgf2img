@@ -5,7 +5,7 @@ pgf2img
 =======
 
 -----------------------------------------------
-generate an image directly from PGF/TiKZ source
+generate an image directly from PGF/TikZ source
 -----------------------------------------------
 
 :Author: Lev Givon <lev@columbia.edu>
@@ -21,7 +21,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 **pgf2img** transforms a LaTeX file containing a diagram specified using
-PGF/TiKZ directly into a cropped image using **pdflatex** and the
+PGF/TikZ directly into a cropped image using **pdflatex** and the
 **convert** command provided by ImageMagick. If no output file name is
 specified, the output image is given the same basename as the input
 file.

@@ -72,9 +72,10 @@ default_density = 200
 # Usage statement:
 usage = '''PGF2IMG 1.0 - Copyright 2010 by Lev Givon
 Usage: %s [options] <input file> [output file]
-Convert a PGF/TiKZ file directly into a cropped image.
+Convert a PGF/TikZ file directly into a cropped image.
 
 Options:
+   -h                     Print usage statement.
    -t <template file>     Use specified LaTeX file as template.
    -d <density>           Specify DPI of output file.
 
