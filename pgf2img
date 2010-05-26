@@ -88,7 +88,7 @@ template = default_template
 density = default_density
     
 # Retrieve the arguments:
-optlist, args = getopt(sys.argv[1:],'t:d:')
+optlist, args = getopt(sys.argv[1:],'ht:d:')
 
 # Print the usage statement if no input files were specified:
 if len(args) < 1:
@@ -98,6 +98,11 @@ if len(args) < 1:
 # Process the arguments:
 for opt in optlist:
 
+    # Print usage statement:
+    if opt[0] == '-h':
+        print usage
+        sys.exit(0)
+        
     # Try to read the specified template file:
     if opt[0] == '-t':
         try:
@@ -119,7 +124,7 @@ for opt in optlist:
             sys.exit(1)
         else:
             density = temp
-            
+
 # Check whether the template contains the string <>:
 if template.find('<>') == -1:
     print 'invalid template'

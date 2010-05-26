@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-
-
+ 
 import os
 import subprocess
 
@@ -15,8 +14,10 @@ class build(distutils.command.build.build):
     def run(self):
         distutils.command.build.build.run(self)
         p = subprocess.Popen('rst2man ' + man_src + ' ' + man_file, shell=True)
-        p.wait()
-
+        returncode = p.wait()
+        if returncode != 0:
+            raise RuntimeError('docutils required to build man file')
+        
 class clean(distutils.command.clean.clean):
     def run(self):
         distutils.command.clean.clean.run(self)

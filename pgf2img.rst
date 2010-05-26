@@ -28,6 +28,9 @@ file.
 
 OPTIONS
 =======
+-h 
+   Print usage statement.
+
 -t \<template file\>             
    Specify template LaTeX file. By default, **pgf2img** uses a
    template that provides access to *AMS-LaTeX*.
