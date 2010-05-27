@@ -143,6 +143,7 @@ def pgf2img(input_filename, output_filename,
 
     # If the specified output file format is pdf, there is no need to run
     # the generated file through convert:
+    output_ext = os.path.splitext(output_filename)[1]
     if output_ext.lower() == '.pdf':
         os.rename(temp_pdf_cropped_filename, output_filename)
     else:
