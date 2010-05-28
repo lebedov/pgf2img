@@ -150,7 +150,7 @@ def pgf2img(input_filename, output_filename,
         __run_cmd(CONVERT + ' -density ' + str(density) + ' ' +
                   temp_pdf_cropped_filename + ' ' +
                   output_filename, 
-                  'error running convert', temp_dirname)
+                  'error running convert')
 
     # Clean up the temporary work directory:
     __run_cmd(RM + ' -rf ' + temp_dirname, 
