@@ -82,5 +82,5 @@ if len(args) > 1:
     output_basename,output_ext = os.path.splitext(output_filename)
 
 # Convert the input file:
-pgf2img(input_filename, output_filename)
+pgf2img(input_filename, output_filename, template, density)
 
