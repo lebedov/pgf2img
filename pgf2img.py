@@ -7,6 +7,7 @@ texlive) and convert (from ImageMagick).
 
 import os
 import sys
+import shutil
 import tempfile
 import time
 import subprocess
@@ -146,7 +147,7 @@ def pgf2img(input_filename, output_filename,
     # the generated file through convert:
     output_ext = os.path.splitext(output_filename)[1]
     if output_ext.lower() == '.pdf':
-        os.rename(temp_pdf_cropped_filename, output_filename)
+        shutil.move(temp_pdf_cropped_filename, output_filename)
     else:
         __run_cmd(CONVERT + ' -density ' + str(density) + ' ' +
                   temp_pdf_cropped_filename + ' ' +
