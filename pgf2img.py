@@ -37,8 +37,7 @@ def __run_cmd(cmd, msg, cwd=None, wait=30):
     of seconds.'''
 
     dev_null = open('/dev/null', 'w')
-    #p = subprocess.Popen(cmd, stdout=dev_null, stderr=dev_null, shell=True, cwd=cwd)
-    p = subprocess.Popen(cmd, shell=True, cwd=cwd)    
+    p = subprocess.Popen(cmd, stdout=dev_null, stderr=dev_null, shell=True, cwd=cwd)
     tic = time.time()
     while p.returncode == None and time.time() < tic+wait:
         try:
