@@ -9,7 +9,7 @@ generate an image directly from PGF/TikZ source
 -----------------------------------------------
 
 :Author: Lev Givon <lev@columbia.edu>
-:Date: 2010-03-04
+:Date: 2012-02-22
 :Copyright: BSD
 :Version: 0.011
 :Manual section: 1

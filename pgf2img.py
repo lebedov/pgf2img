@@ -63,15 +63,16 @@ RM = __check_for_exec('rm', 'cannot find rm')
 redirect_output = ' 1>/dev/null 2>&1'
 
 # Defaults:
-default_template = string.Template("""\documentclass[10pt]{standalone}
+default_template = string.Template("""
+\\documentclass[10pt]{standalone}
 \\usepackage{amsmath,amssymb,amsbsy,amsfonts,amsthm}
 \\usepackage{cmbright}
 \\usepackage{tikz}
-\usetikzlibrary{shapes}
-\usetikzlibrary{shapes.multipart}
-\usetikzlibrary{shadows}
-\usetikzlibrary{arrows}
-\usetikzlibrary{positioning}
+\\usetikzlibrary{shapes}
+\\usetikzlibrary{shapes.multipart}
+\\usetikzlibrary{shadows}
+\\usetikzlibrary{arrows}
+\\usetikzlibrary{positioning}
 \\pagestyle{empty}
 \\begin{document}
 ${body}

@@ -11,7 +11,7 @@ from getopt import getopt
 from pgf2img import pgf2img, default_template, default_density
 
 # Usage statement:
-usage = """PGF2IMG 0.011 - Copyright 2010-2012 by Lev Givon
+usage = """PGF2IMG 0.011 - Copyright 2009-2012 by Lev Givon
 Usage: %s [options] <input file> [output file]
 Convert a PGF/TikZ file directly into a cropped image.
 
