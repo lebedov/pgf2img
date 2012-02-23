@@ -4,8 +4,7 @@
 Command line interface to pgf2img module.
 """
 
-import os
-import sys
+import os, sys, string
 from getopt import getopt
 
 from pgf2img import pgf2img, default_template, default_density
@@ -54,7 +53,7 @@ for opt in optlist:
             sys.exit(1)
         else:
             data = f.readlines()
-            template = ''.join(data)
+            template = string.Template(''.join(data))
             f.close()
 
     # Set the density
