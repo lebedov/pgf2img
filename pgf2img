@@ -11,7 +11,7 @@ from getopt import getopt
 from pgf2img import pgf2img, default_template, default_density
 
 # Usage statement:
-usage = """PGF2IMG 1.0 - Copyright 2010 by Lev Givon
+usage = """PGF2IMG 0.011 - Copyright 2010-2012 by Lev Givon
 Usage: %s [options] <input file> [output file]
 Convert a PGF/TikZ file directly into a cropped image.
 
@@ -30,7 +30,7 @@ template = default_template
 density = default_density
     
 # Retrieve the arguments:
-optlist, args = getopt(sys.argv[1:],'ht:d:')
+optlist, args = getopt(sys.argv[1:],'?ht:d:', ['help'])
 
 # Print the usage statement if no input files were specified:
 if len(args) < 1:
@@ -67,8 +67,10 @@ for opt in optlist:
         else:
             density = temp
 
-# Check whether the template contains the string <>:
-if template.find('<>') == -1:
+# Check whether the template is valid:
+try:
+    template.substitute(body='x')
+except:
     print 'invalid template'
     exit(1)
     

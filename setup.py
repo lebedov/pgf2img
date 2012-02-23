@@ -25,7 +25,7 @@ class clean(distutils.command.clean.clean):
             os.unlink(man_file)
                                 
 NAME = 'pgf2img'
-VERSION = str(0.01)
+VERSION = str(0.011)
 AUTHOR = 'Lev Givon'
 AUTHOR_EMAIL = 'lev@columbia.edu'
 URL = 'http://www.columbia.edu/~lev'

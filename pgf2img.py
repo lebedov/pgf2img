@@ -1,16 +1,11 @@
 #!/usr/bin/env python
 
 """
-Convert PGF files to an image file using pdflatex, pdfcrop, (from
+Convert PGF files to an image file using pdflatex (from
 texlive) and convert (from ImageMagick).
 """
 
-import os
-import sys
-import shutil
-import tempfile
-import time
-import subprocess
+import os, sys, shutil, tempfile, time, subprocess, string
 
 def __find_exec(executable):
     '''Try to find an executable in the system path.'''
@@ -42,7 +37,8 @@ def __run_cmd(cmd, msg, cwd=None, wait=30):
     of seconds.'''
 
     dev_null = open('/dev/null', 'w')
-    p = subprocess.Popen(cmd, stdout=dev_null, stderr=dev_null, shell=True, cwd=cwd)
+    #p = subprocess.Popen(cmd, stdout=dev_null, stderr=dev_null, shell=True, cwd=cwd)
+    p = subprocess.Popen(cmd, shell=True, cwd=cwd)    
     tic = time.time()
     while p.returncode == None and time.time() < tic+wait:
         try:
@@ -60,7 +56,6 @@ def __run_cmd(cmd, msg, cwd=None, wait=30):
 
 # Check for required executables:
 PDFLATEX = __check_for_exec('pdflatex', 'cannot find pdflatex')
-PDFCROP = __check_for_exec('pdfcrop', 'cannot find pdfcrop')
 CONVERT = __check_for_exec('convert', 'cannot find convert')
 RM = __check_for_exec('rm', 'cannot find rm')
 
@@ -68,16 +63,20 @@ RM = __check_for_exec('rm', 'cannot find rm')
 redirect_output = ' 1>/dev/null 2>&1'
 
 # Defaults:
-default_template = """\\documentclass[10pt]{article}
+default_template = string.Template("""\documentclass[10pt]{standalone}
 \\usepackage{amsmath,amssymb,amsbsy,amsfonts,amsthm}
-\\usepackage[landscape]{geometry}
 \\usepackage{cmbright}
 \\usepackage{tikz}
+\usetikzlibrary{shapes}
+\usetikzlibrary{shapes.multipart}
+\usetikzlibrary{shadows}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
 \\pagestyle{empty}
 \\begin{document}
-<>
+${body}
 \\end{document}
-"""
+""")
 default_density = 200
 
 def pgf2img(input_filename, output_filename,
@@ -109,7 +108,7 @@ def pgf2img(input_filename, output_filename,
         input_data = ''.join(input_file.readlines())
 
     # Combine the template and input file:
-    temp_data = template.replace('<>',input_data)
+    temp_data = template.substitute(body=input_data)
 
     # Write the output to a temporary LaTeX file:
     try:
@@ -134,23 +133,16 @@ def pgf2img(input_filename, output_filename,
               temp_latex_filename, 
               'error running pdflatex', temp_dirname)
 
-    # Crop the file with pdfcrop:
-    temp_latex_basename = os.path.splitext(temp_latex_filename)[0]
-    temp_pdf_filename = temp_latex_basename + '.pdf'
-    temp_pdf_cropped_filename = temp_latex_basename + '_cropped.pdf'
-    __run_cmd(PDFCROP + ' ' +
-              temp_pdf_filename + ' ' +
-              temp_pdf_cropped_filename, 
-              'error running pdfcrop',temp_dirname)
-
     # If the specified output file format is pdf, there is no need to run
     # the generated file through convert:
+    temp_latex_basename = os.path.splitext(temp_latex_filename)[0]
+    temp_pdf_filename = temp_latex_basename + '.pdf'
     output_ext = os.path.splitext(output_filename)[1]
     if output_ext.lower() == '.pdf':
-        shutil.move(temp_pdf_cropped_filename, output_filename)
+        shutil.move(temp_pdf_filename, output_filename)
     else:
-        __run_cmd(CONVERT + ' -density ' + str(density) + ' ' +
-                  temp_pdf_cropped_filename + ' ' +
+        __run_cmd(CONVERT + ' -trim -density ' + str(density) + ' ' +
+                  temp_pdf_filename + ' ' +
                   output_filename, 
                   'error running convert')
 

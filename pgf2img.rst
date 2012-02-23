@@ -11,7 +11,7 @@ generate an image directly from PGF/TikZ source
 :Author: Lev Givon <lev@columbia.edu>
 :Date: 2010-03-04
 :Copyright: BSD
-:Version: 0.01
+:Version: 0.011
 :Manual section: 1
 
 SYNOPSIS
