@@ -67,6 +67,7 @@ default_template = string.Template("""
 \\usepackage{amsmath,amssymb,amsbsy,amsfonts,amsthm}
 \\usepackage{cmbright}
 \\usepackage{tikz}
+\\usetikzlibrary{calc}
 \\usetikzlibrary{shapes}
 \\usetikzlibrary{shapes.multipart}
 \\usetikzlibrary{shadows}
