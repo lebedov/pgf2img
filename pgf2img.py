@@ -66,6 +66,7 @@ default_template = string.Template("""
 \\documentclass[10pt]{standalone}
 \\usepackage{amsmath,amssymb,amsbsy,amsfonts,amsthm}
 \\usepackage{cmbright}
+\\usepackage{hyperref}
 \\usepackage{tikz}
 \\usetikzlibrary{calc}
 \\usetikzlibrary{shapes}
@@ -73,6 +74,8 @@ default_template = string.Template("""
 \\usetikzlibrary{shadows}
 \\usetikzlibrary{arrows}
 \\usetikzlibrary{positioning}
+\\usetikzlibrary{intersections}
+\\usetikzlibrary{matrix}
 \\pagestyle{empty}
 \\begin{document}
 ${body}
